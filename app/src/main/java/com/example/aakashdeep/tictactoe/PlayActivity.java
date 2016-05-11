@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class PlayActivity extends AppCompatActivity {
     Button b1;
@@ -16,10 +17,13 @@ public class PlayActivity extends AppCompatActivity {
     Button b7;
     Button b8;
     Button b9;
+    TextView t1;
     int user=0;//0= player 1 and 1=player 2
     int counter=0;//For number of moves
     int playerMove1=0;
     int playerMoves2=0;
+    String user1;
+    String user2;
 
     int r11=0,r12=0,r13=0,r21=0,r22=0,r23=0,r31=0,r32=0,r33=0;//X=1 and O=2
 
@@ -41,12 +45,12 @@ public class PlayActivity extends AppCompatActivity {
         b8 = (Button) findViewById(R.id.button8);
         b9 = (Button) findViewById(R.id.button9);
 
-
+        t1=(TextView)findViewById(R.id.textView3);
 
 
         Bundle bundle = getIntent().getExtras();
-        String user1 = bundle.getString("user1");
-        String user2= bundle.getString("user2");
+        user1 = bundle.getString("user1");
+        user2= bundle.getString("user2");
         //System.out.print("user1");
        // b1.setText(message);
        // b2.setText(message1);
@@ -67,130 +71,186 @@ public class PlayActivity extends AppCompatActivity {
             case R.id.button:
                 if(user==0){
                     b1.setText("X");
+                    t1.setText(user2+" turn");
                     r11=1;
                     winConditionChecker();
                     user++;
+                    counter++;
+
+
 
                 }
                 else{
                     b1.setText("O");
+                    t1.setText(user1+" turn");
                     r11=2;
                     winConditionChecker();
                     user--;
+                    counter++;
                 }
+                if (counter==9)
+                    drawConditionChecker();
                 break;
             case R.id.button2:
                 // do something else
                 if(user==0){
                     b2.setText("X");
+                    t1.setText(user2+" turn");
                     r12=1;
                     winConditionChecker();
                     user++;
+                    counter++;
                 }
                 else{
                     b2.setText("O");
+                    t1.setText(user1+" turn");
                     r12=2;
                     winConditionChecker();
                     user--;
+                    counter++;
                 }
+                if (counter==9)
+                    drawConditionChecker();
                 break;
             case R.id.button3:
                 if(user==0){
                     b3.setText("X");
+                    t1.setText(user2+" turn");
                     r13=1;
                     winConditionChecker();
                     user++;
+                    counter++;
                 }
                 else{
                     b3.setText("O");
+                    t1.setText(user1+" turn");
                     r13=2;
                     winConditionChecker();
                     user--;
+                    counter++;
                 }
+                if (counter==9)
+                    drawConditionChecker();
                 break;
             case R.id.button4:
                 if(user==0){
                     b4.setText("X");
+                    t1.setText(user2+" turn");
                     r21=1;
                     winConditionChecker();
                     user++;
+                    counter++;
                 }
                 else{
                     b4.setText("O");
+                    t1.setText(user1+" turn");
                     user--;
                     winConditionChecker();
                     r21=2;
+                    counter++;
                 }
+                if (counter==9)
+                    drawConditionChecker();
                 break;
             case R.id.button5:
                 if(user==0){
                     b5.setText("X");
+                    t1.setText(user2+" turn");
                     r22=1;
                     winConditionChecker();
                     user++;
+                    counter++;
                 }
                 else{
                     b5.setText("O");
+                    t1.setText(user1+" turn");
                     r22=2;
                     winConditionChecker();
                     user--;
+                    counter++;
                 }
+                if (counter==9)
+                    drawConditionChecker();
                 break;
             case R.id.button6:
                 if(user==0){
                     b6.setText("X");
+                    t1.setText(user2+" turn");
                     r23=1;
                     winConditionChecker();
                     user++;
+                    counter++;
                 }
                 else{
                     b6.setText("O");
+                    t1.setText(user1+" turn");
                     r23=2;
                     winConditionChecker();
                     user--;
+                    counter++;
                 }
+                if (counter==9)
+                    drawConditionChecker();
                 break;
             case R.id.button7:
                 if(user==0){
                     b7.setText("X");
+                    t1.setText(user2+" turn");
                     r31=1;
                     winConditionChecker();
                     user++;
+                    counter++;
                 }
                 else{
                     b7.setText("O");
+                    t1.setText(user1+" turn");
                     r31=2;
                     winConditionChecker();
                     user--;
+                    counter++;
                 }
+                if (counter==9)
+                    drawConditionChecker();
                 break;
             case R.id.button8:
                 if(user==0){
                     b8.setText("X");
+                    t1.setText(user2+" turn");
                     r32=1;
                     winConditionChecker();
                     user++;
+                    counter++;
                 }
                 else{
                     b8.setText("O");
+                    t1.setText(user1+" turn");
                     r32=2;
                     winConditionChecker();
                     user--;
+                    counter++;
                 }
+                if (counter==9)
+                    drawConditionChecker();
                 break;
             case R.id.button9:
                 if(user==0){
                     b9.setText("X");
+                    t1.setText(user2+" turn");
                     r33=1;
                     winConditionChecker();
                     user++;
+                    counter++;
                 }
                 else{
                     b9.setText("O");
+                    t1.setText(user1+" turn");
                     r33=2;
                     winConditionChecker();
                     user--;
+                    counter++;
                 }
+                if (counter==9)
+                    drawConditionChecker();
                 break;
         }
     }
