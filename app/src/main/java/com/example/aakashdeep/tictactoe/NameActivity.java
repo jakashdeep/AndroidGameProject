@@ -18,6 +18,8 @@ public class NameActivity extends AppCompatActivity {
     EditText et2;
     Button b1;
     Button b2;
+    Button b3;
+    Button b4;
     Spinner dropdown;
     SharedPreferences sharedpre;
     String player1;
@@ -42,6 +44,8 @@ public class NameActivity extends AppCompatActivity {
 
         b1 = (Button) findViewById(R.id.button10);
         b2 = (Button) findViewById(R.id.button11);
+        b3 = (Button) findViewById(R.id.button12);
+        b4 = (Button) findViewById(R.id.button13);
        // System.out.print("Valueeeeeeee" + );
 
      /*sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
@@ -58,7 +62,7 @@ public class NameActivity extends AppCompatActivity {
                 player1=et1.getText().toString();
                 Log.d("Player1", "value"+player1);
                 player2=et2.getText().toString();
-                Log.d("Player2", "value"+player2);
+                Log.d("Player2", "value" + player2);
                 //SearchName();
                 i.putExtra("user1",et1.getText().toString());
                 i.putExtra("user2",et2.getText().toString());
@@ -76,7 +80,26 @@ public class NameActivity extends AppCompatActivity {
             }
         });
 
+        final Intent a= new Intent(NameActivity.this,About.class);
+        //For about activity calling
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivity(a);
+            }
+        });
+
+
+        final Intent s= new Intent(NameActivity.this,Score.class);
+        //For about score board activity calling
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(s);
+            }
+        });
     }
 
     public void AppExit()

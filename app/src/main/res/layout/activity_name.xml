@@ -60,6 +60,22 @@
             android:id="@+id/button11"
             android:layout_row="3"
             android:layout_column="2" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About"
+            android:id="@+id/button13"
+            android:layout_row="4"
+            android:layout_column="2" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scores"
+            android:id="@+id/button12"
+            android:layout_row="6"
+            android:layout_column="2" />
     </GridLayout>
 
     <Spinner

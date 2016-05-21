@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".NameActivity" />
         <activity android:name=".PlayActivity" />
+        <activity android:name=".About" />
+        <activity android:name=".Score"></activity>
     </application>
 
 </manifest>
