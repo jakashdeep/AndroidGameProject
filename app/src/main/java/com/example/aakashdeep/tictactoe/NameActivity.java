@@ -22,7 +22,7 @@ public class NameActivity extends AppCompatActivity {
     SharedPreferences sharedpre;
     String player1;
     String player2;
-
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +44,21 @@ public class NameActivity extends AppCompatActivity {
         b2 = (Button) findViewById(R.id.button11);
        // System.out.print("Valueeeeeeee" + );
 
+     sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor= sharedpre.edit();
+       editor.clear();
+       editor.commit();
 
-        //Listener for button
+       // Listener for button
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //starts playactivity
                 player1=et1.getText().toString();
+                Log.d("Player1", "value"+player1);
+                player2=et2.getText().toString();
+                Log.d("Player2", "value"+player2);
                 SearchName();
                 i.putExtra("user1",et1.getText().toString());
                 i.putExtra("user2",et2.getText().toString());
@@ -89,26 +97,48 @@ public class NameActivity extends AppCompatActivity {
 
     private void SearchName()
     {
-        sharedpre=getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        Log.d("In Search Name", "--");
+        sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
 
-        String temp=sharedpre.getString("Name",null);
-        Log.d("hhhhhhh", "2");
+        //String temp=sharedpre.getString("Name",null);
+        Log.d(" sharedpre", "2");
         //String score=sharedpre.getInt("Score",null);
-        Log.d("hhhhhhh", "3");
 
-        if(temp!=null)
+
+        if(sharedpre.contains("Name"))
         {
-            Log.d("hhhhhhh", "2"+player1);
+            Log.d("in  ", "if");
+            Log.d("player1", "2"+player1);
             String name=sharedpre.getString("Name",player1);
-            Log.d("hhhhhhh", "2"+name);
+            Log.d("name", "2"+name);
             Toast.makeText(this, "Data Was found", Toast.LENGTH_LONG).show();
             //scoreUpdate();
         }
         else
         {
+            editor= sharedpre.edit();
+            Log.d("in  ", "else");
             Toast.makeText(this,"No Data Was found",Toast.LENGTH_LONG).show();
-
+            //editor.putString(player1, player1);
+            editor.putInt(player1, 0);
+            //editor.putString("Name1", player2);
+            editor.putInt(player2,0);
+            //FirstEntry(player1);
+           // FirstEntry(player2);
+            editor.commit();
         }
+    }
+
+    private void FirstEntry(String temp1)
+    {
+        Log.d("in  ", "firstentry");
+
+       // editor.clear();
+        Log.d("in  ", "temp1 value"+temp1);
+        editor.putString("Name",temp1);
+        editor.putInt("Score",0);
+
+
     }
 
 }

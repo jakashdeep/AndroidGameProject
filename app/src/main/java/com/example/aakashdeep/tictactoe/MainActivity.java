@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //
         final Intent i= new Intent(this,NameActivity.class);
-        System.out.print("message dfsdfsdfsdfd");
+
         Timer timer= new Timer();
         timer.schedule(
                 new TimerTask() {
