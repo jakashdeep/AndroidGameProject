@@ -44,10 +44,10 @@ public class NameActivity extends AppCompatActivity {
         b2 = (Button) findViewById(R.id.button11);
        // System.out.print("Valueeeeeeee" + );
 
-     sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
+     /*sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor= sharedpre.edit();
        editor.clear();
-       editor.commit();
+       editor.commit();*/
 
        // Listener for button
 
@@ -59,7 +59,7 @@ public class NameActivity extends AppCompatActivity {
                 Log.d("Player1", "value"+player1);
                 player2=et2.getText().toString();
                 Log.d("Player2", "value"+player2);
-                SearchName();
+                //SearchName();
                 i.putExtra("user1",et1.getText().toString());
                 i.putExtra("user2",et2.getText().toString());
                 i.putExtra("selection",DropDownCheck());
@@ -103,8 +103,15 @@ public class NameActivity extends AppCompatActivity {
         //String temp=sharedpre.getString("Name",null);
         Log.d(" sharedpre", "2");
         //String score=sharedpre.getInt("Score",null);
+if (sharedpre.contains("akash")){
+    Toast.makeText(this, "Akash Was found", Toast.LENGTH_LONG).show();
+}
+        if (sharedpre.contains("comp")){
+            Toast.makeText(this, "comp Was found", Toast.LENGTH_LONG).show();
+        }
 
 
+/*
         if(sharedpre.contains("Name"))
         {
             Log.d("in  ", "if");
@@ -126,7 +133,7 @@ public class NameActivity extends AppCompatActivity {
             //FirstEntry(player1);
            // FirstEntry(player2);
             editor.commit();
-        }
+        }*/
     }
 
     private void FirstEntry(String temp1)

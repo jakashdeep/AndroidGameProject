@@ -28,6 +28,8 @@ public class PlayActivity extends AppCompatActivity {
     //Player Name Text field
     TextView t2;
     TextView t3;
+    TextView t4;
+    TextView t5;
 
     int user=0;//0= player 1 and 1=player 2
     int counter=0;//For number of moves
@@ -39,6 +41,11 @@ public class PlayActivity extends AppCompatActivity {
 
     String Player1;
     String Player2;
+
+    int scorePlayer1;
+    int scorePlayer2;
+
+    String winner = null;
 
     public static final String DEFAULT = "N/A";
 
@@ -71,12 +78,13 @@ public class PlayActivity extends AppCompatActivity {
         t1=(TextView)findViewById(R.id.textView3);
         t2=(TextView)findViewById(R.id.textView4);
         t3=(TextView)findViewById(R.id.textView5);
+        t4=(TextView)findViewById(R.id.textView6);
+        t5=(TextView)findViewById(R.id.textView7);
+        //SharedPreferences declaration
+        sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
 
-        //For storing the Score
-        sharedpre=getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
-
-
+        //For getting Data from NameActivity
         Bundle bundle = getIntent().getExtras();
         user1 = bundle.getString("user1");
         user2= bundle.getString("user2");
@@ -93,7 +101,7 @@ public class PlayActivity extends AppCompatActivity {
         Log.d("hhhhhhh", "hdbbbd+" + select);
         t2.setText(user1);
         t3.setText(user2);
-
+        Log.d("Before Search Data", "call");
         searchData();
         //System.out.print("user1");
        // b1.setText(message);
@@ -484,14 +492,56 @@ public class PlayActivity extends AppCompatActivity {
 
     private void playerWin1(){
         t1.setText("Winner is "+user1);
+        winner=Player1;
+        Log.d("In winner declared", "--");
+        scoreUpdate();
     }
     private void playerWin2(){
         t1.setText("Winner is "+user2);
+        winner=Player2;
+        Log.d("In winner declared", "--");
+        scoreUpdate();
     }
+
+
+
 
     private void searchData()
     {
-        Log.d("hhhhhhh", "1");
+        //sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
+
+        Log.d("In Search Data", "--");
+        //Condition to check if the database already have the score of the Player 1
+       //if (sharedpre.contains(Player1)==false){
+
+      // }
+        //if (sharedpre.contains(Player2)){
+
+        //}
+            Log.d("In Search Data", "Player1");
+            Toast.makeText(this, "Akash Was found", Toast.LENGTH_LONG).show();
+            Log.d("In Search Data", " before getint");
+            scorePlayer1=sharedpre.getInt(Player1,0);
+            Log.d("After Search Data", " before getint");
+            Log.d("scorePlayer1", " --" + scorePlayer1);
+
+       // }
+        //Condition to check if the database already have the score of the Player 2
+       // if (sharedpre.contains(Player2)){
+            Log.d("In Search Data", "Player2");
+            Toast.makeText(this, "comp Was found", Toast.LENGTH_LONG).show();
+            scorePlayer2=sharedpre.getInt(Player2,0);
+
+
+
+            //Updating the text field with the Score
+            t4.setText(String.valueOf(scorePlayer1));
+            t5.setText(String.valueOf(scorePlayer2));
+            Log.d("done Search Data", "Player2");
+            Log.d("scorePlayer2", " --"+scorePlayer2);
+
+       // }
+       /* Log.d("hhhhhhh", "1");
         String name=sharedpre.getString("Name",null);
         Log.d("hhhhhhh", "2");
         //String score=sharedpre.getInt("Score",null);
@@ -506,18 +556,28 @@ public class PlayActivity extends AppCompatActivity {
         {
             Toast.makeText(this,"Data Was found",Toast.LENGTH_LONG).show();
 
-        }
+        }*/
     }
 
     private void scoreUpdate()
     {
-
+        Log.d("In winner if", "--");
         SharedPreferences.Editor editor= sharedpre.edit();
-        editor.putString("Name",Player1);
-        editor.putInt("Score", 0);
 
-        editor.putString("Name",Player2);
-        editor.putInt("Score",0);
+        if(winner==Player1){
+            scorePlayer1++;
+            editor.putInt(winner, scorePlayer1);
+            Log.d("In winner if Player1", "--");
+        }
+        else
+        {
+            scorePlayer2++;
+            editor.putInt(winner, scorePlayer2);
+            Log.d("In winner if Player2", "--");
+        }
         editor.commit();
+
+        t4.setText(String.valueOf(scorePlayer1));
+        t5.setText(String.valueOf(scorePlayer2));
     }
 }
