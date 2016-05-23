@@ -22,6 +22,7 @@ public class Score extends AppCompatActivity {
         Map<String, ?> allEntries = sharedpre.getAll();
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
+            //Display score
             t1.append(entry.getKey() + "     " + entry.getValue().toString() + "\n");
 
         }
