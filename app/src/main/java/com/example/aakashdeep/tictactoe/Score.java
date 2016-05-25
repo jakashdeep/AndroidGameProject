@@ -26,5 +26,6 @@ public class Score extends AppCompatActivity {
             t1.append(entry.getKey() + "     " + entry.getValue().toString() + "\n");
 
         }
+
     }
 }

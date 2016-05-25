@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.Preference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static android.graphics.Color.*;
 
 public class PlayActivity extends AppCompatActivity {
     Button b1;
@@ -30,7 +33,7 @@ public class PlayActivity extends AppCompatActivity {
     TextView t3;
     TextView t4;
     TextView t5;
-
+    boolean flag =false;
     int user=0;//0= player 1 and 1=player 2
     int counter=0;//For number of moves
     int playerMove1=0;
@@ -38,14 +41,18 @@ public class PlayActivity extends AppCompatActivity {
     String user1;
     String user2;
     String select;
-
+    int no_of_plays=0;
     String Player1;
     String Player2;
 
     int scorePlayer1;
     int scorePlayer2;
-
+boolean flag2 = true;
     String winner = null;
+
+    //Symbols to store the symbols X and O
+    String symbol1;
+    String symbol2;
 
     public static final String DEFAULT = "N/A";
 
@@ -59,8 +66,13 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+Log.d("In Play Activity","XXXXXXX");
+       /* if(flag2){
+        no_of_plays = NameActivity.plays ;
+        flag2 =false;
+       }*/
 
-        //Alert Dialog Box
+    //Alert Dialog Box
        // AlertDialog.Builder Popup  = new AlertDialog.Builder(this);
         //button onclick code
         b1 = (Button) findViewById(R.id.button);
@@ -83,19 +95,30 @@ public class PlayActivity extends AppCompatActivity {
         //SharedPreferences declaration
         sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
 
-
+        ButtonBackground();
         //For getting Data from NameActivity
         Bundle bundle = getIntent().getExtras();
+        Log.d("Before","User1");
         user1 = bundle.getString("user1");
         user2= bundle.getString("user2");
         Player1=user1;
         Player2=user2;
         select=bundle.getString("selection");
+        Log.d("before ", "no_of_plays");
+        no_of_plays=bundle.getInt("plays");
+        Log.d("no_of_plays", "no_of_plays" + no_of_plays);
+       // no_of_plays=1;
         user1=user1+" "+select;
-        if(select.equals("X"))
-            user2=user2+" "+"Y";
-        else
+        if(select.equals("X")){
+            user2=user2+" "+"O";
+            symbol1="X";
+            symbol2="O";
+        }
+        else{
             user2=user2+" "+"X";
+            symbol2="X";
+            symbol1="O";
+        }
 
 
         Log.d("hhhhhhh", "hdbbbd+" + select);
@@ -114,237 +137,269 @@ public class PlayActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.button:
                 if(user==0){
-                    b1.setText("X");
+                    b1.setText(symbol1);
                     //b1.setEnabled(false);
                     t1.setText(user2+" turn");
                     r11=1;
-                    winConditionChecker();
+                  flag=  winConditionChecker();
                     //drawConditionChecker();
                     b1.setEnabled(false);
                     user++;
                     counter++;
+                    Log.d("checking","Button 1");
 
                 }
                 else{
-                    b1.setText("O");
+                    b1.setText(symbol2);
                     t1.setText(user1+" turn");
                     r11=2;
-                    winConditionChecker();
+                    flag=  winConditionChecker();
                    //drawConditionChecker();
                     b1.setEnabled(false);
                     user--;
                     counter++;
                 }
                 //
-                if (counter==9)
-                    drawConditionChecker();
+
                 break;
             case R.id.button2:
                 // do something else
                 if(user==0){
-                    b2.setText("X");
+                    b2.setText(symbol1);
                     t1.setText(user2+" turn");
                     r12=1;
-                    winConditionChecker();
+                    flag=  winConditionChecker();
                    //drawConditionChecker();
                     b2.setEnabled(false);
                     user++;
                     counter++;
                 }
                 else{
-                    b2.setText("O");
+                    b2.setText(symbol2);
                     t1.setText(user1+" turn");
                     r12=2;
-                    winConditionChecker();
+                    flag=  winConditionChecker();
                     //drawConditionChecker();
                     b2.setEnabled(false);
                     user--;
                     counter++;
                 }
                 //
-                if (counter==9)
-                    drawConditionChecker();
+
                 break;
             case R.id.button3:
                 if(user==0){
-                    b3.setText("X");
+                    b3.setText(symbol1);
                     t1.setText(user2+" turn");
                     r13=1;
-                    winConditionChecker();
+                    flag=    winConditionChecker();
                     //drawConditionChecker();
                     b3.setEnabled(false);
                     user++;
                     counter++;
                 }
                 else{
-                    b3.setText("O");
+                    b3.setText(symbol2);
                     t1.setText(user1+" turn");
                     r13=2;
-                    winConditionChecker();
+                    flag=  winConditionChecker();
                    // drawConditionChecker();
                     b3.setEnabled(false);
                     user--;
                     counter++;
                 }
                 //
-                if (counter==9)
-                    drawConditionChecker();
+
                 break;
             case R.id.button4:
                 if(user==0){
-                    b4.setText("X");
+                    b4.setText(symbol1);
                     t1.setText(user2+" turn");
                     r21=1;
-                    winConditionChecker();
+                    flag=  winConditionChecker();
                     //drawConditionChecker();
                     b4.setEnabled(false);
                     user++;
                     counter++;
                 }
                 else{
-                    b4.setText("O");
+                    b4.setText(symbol2);
                     t1.setText(user1+" turn");
                     user--;
-                    winConditionChecker();
+                    flag= winConditionChecker();
                     //drawConditionChecker();
                     b4.setEnabled(false);
                     r21=2;
                     counter++;
                 }
                 //
-                if (counter==9)
-                    drawConditionChecker();
+
                 break;
             case R.id.button5:
                 if(user==0){
-                    b5.setText("X");
+                    b5.setText(symbol1);
                     t1.setText(user2+" turn");
                     r22=1;
-                    winConditionChecker();
+                    flag=  winConditionChecker();
                     //drawConditionChecker();
                     b5.setEnabled(false);
                     user++;
                     counter++;
                 }
                 else{
-                    b5.setText("O");
+                    b5.setText(symbol2);
                     t1.setText(user1+" turn");
                     r22=2;
-                    winConditionChecker();
+                    flag=  winConditionChecker();
                     //drawConditionChecker();
                     b5.setEnabled(false);
                     user--;
                     counter++;
                 }
                 //
-                if (counter==9)
-                    drawConditionChecker();
+
                 break;
             case R.id.button6:
                 if(user==0){
-                    b6.setText("X");
+                    b6.setText(symbol1);
                     t1.setText(user2+" turn");
                     r23=1;
-                    winConditionChecker();
+                   flag =  winConditionChecker();
                     //drawConditionChecker();
                     b6.setEnabled(false);
                     user++;
                     counter++;
                 }
                 else{
-                    b6.setText("O");
+                    b6.setText(symbol2);
                     t1.setText(user1+" turn");
                     r23=2;
-                    winConditionChecker();
+                    flag = winConditionChecker();
                     //drawConditionChecker();
                     b6.setEnabled(false);
                     user--;
                     counter++;
                 }
                 //
-                if (counter==9)
-                    drawConditionChecker();
+
                 break;
             case R.id.button7:
                 if(user==0){
-                    b7.setText("X");
+                    b7.setText(symbol1);
                     t1.setText(user2+" turn");
                     r31=1;
-                    winConditionChecker();
+                    flag = winConditionChecker();
                     //drawConditionChecker();
                     b7.setEnabled(false);
                     user++;
                     counter++;
                 }
                 else{
-                    b7.setText("O");
+                    b7.setText(symbol2);
                     t1.setText(user1+" turn");
                     r31=2;
-                    winConditionChecker();
+                    flag = winConditionChecker();
                     //drawConditionChecker();
                     b7.setEnabled(false);
                     user--;
                     counter++;
                 }
                 //
-                if (counter==9)
-                    drawConditionChecker();
+
                 break;
             case R.id.button8:
                 if(user==0){
-                    b8.setText("X");
+                    b8.setText(symbol1);
                     t1.setText(user2+" turn");
                     r32=1;
-                    winConditionChecker();
+                    flag = winConditionChecker();
                     //drawConditionChecker();
                     b8.setEnabled(false);
                     user++;
                     counter++;
                 }
                 else{
-                    b8.setText("O");
+                    b8.setText(symbol2);
                     t1.setText(user1+" turn");
                     r32=2;
-                    winConditionChecker();
+                    flag = winConditionChecker();
                     //drawConditionChecker();
                     b8.setEnabled(false);
                     user--;
                     counter++;
                 }
                 //
-                if (counter==9)
-                    drawConditionChecker();
+
                 break;
             case R.id.button9:
                 if(user==0){
-                    b9.setText("X");
+                    b9.setText(symbol1);
                     t1.setText(user2+" turn");
                     r33=1;
-                    winConditionChecker();
+                    flag = winConditionChecker();
                     //drawConditionChecker();
                     b9.setEnabled(false);
                     user++;
                     counter++;
                 }
                 else{
-                    b9.setText("O");
+                    b9.setText(symbol2);
                     t1.setText(user1+" turn");
                     r33=2;
-                    winConditionChecker();
+                    flag = winConditionChecker();
                     //drawConditionChecker();
                     b9.setEnabled(false);
                     user--;
                     counter++;
                 }
-                //
-                if (counter==9)
-                    drawConditionChecker();
+
                 break;
+        }
+
+        if(flag)
+        {
+            if(no_of_plays>=2){
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle("Alert");
+                alert.setMessage("Player Won"+winner+"\n"+"New Game Starts");
+                alert.setPositiveButton("OK",null);
+                alert.show();
+                no_of_plays--;
+                Reset();
+
+            }
+
+            return;
+        }
+        if(counter>=9)
+        {
+
+
+            t1.setText("Game is drawn");
+            t1.setBackgroundColor(0x66ccff00);
+            Log.d("Game is drawn", "---");
+
+
+
+            if(no_of_plays>=2){
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle("Alert");
+                alert.setMessage("Game is Draw" + "\n" + "New Game Starts");
+                alert.setPositiveButton("OK", null);
+                alert.show();
+
+                no_of_plays--;
+                Reset();
+
+            }
+
+
+
         }
     }
 
 
-    private void winConditionChecker(){
+    private boolean winConditionChecker(){
 
         //Condition for player one win
         //Horizontal Row Checker
@@ -359,6 +414,7 @@ public class PlayActivity extends AppCompatActivity {
                 playerWin1();
                 else
                 playerWin2();
+            return true;
 
         }
         if ((r21==1 & r22==1 & r23==1) || (r21==2 & r22==2 & r23==2))
@@ -372,6 +428,9 @@ public class PlayActivity extends AppCompatActivity {
                 playerWin1();
             else
                 playerWin2();
+            return true;
+
+
         }
         if ((r31==1 & r32==1 & r33==1)||(r31==2 & r32==2 & r33==2) )
         {
@@ -384,6 +443,8 @@ public class PlayActivity extends AppCompatActivity {
                 playerWin1();
             else
                 playerWin2();
+            return true;
+
         }
         //Diagonal Checker
         if((r11==1 & r21==1 & r31==1) || (r11==2 & r21==2 & r31==2) )
@@ -397,6 +458,8 @@ public class PlayActivity extends AppCompatActivity {
                 playerWin1();
             else
                 playerWin2();
+            return true;
+
         }
         if((r13==1 & r23==1 & r33==1) || (r13==2 & r23==2 & r33==2) )
         {
@@ -408,6 +471,8 @@ public class PlayActivity extends AppCompatActivity {
                 playerWin1();
             else
                 playerWin2();
+            return true;
+
         }
 
         if((r12==1 & r22==1 & r32==1) || (r12==2 & r22==2 & r32==2) )
@@ -420,6 +485,8 @@ public class PlayActivity extends AppCompatActivity {
                 playerWin1();
             else
                 playerWin2();
+            return true;
+
         }
 
         if((r11==1 & r22==1 & r33==1) || (r11==2 & r22==2 & r33==2))
@@ -432,6 +499,8 @@ public class PlayActivity extends AppCompatActivity {
                 playerWin1();
             else
                 playerWin2();
+            return true;
+
         }
         if((r13==1 & r22==1 & r31==1) || (r13==2 & r22==2 & r31==2) )
         {
@@ -443,18 +512,13 @@ public class PlayActivity extends AppCompatActivity {
                 playerWin1();
             else
                 playerWin2();
+            return true;
+
         }
+        return false;
 
     }
 
-    private void drawConditionChecker()
-    {
-      if(r11!=0 & r12!=0 & r13!=0 & r21!=0 & r22!=0 & r23!=0 & r31!=0 & r32!=0 & r33!=0)
-      {
-       t1.setText("Draw!");
-
-      }
-    }
 
     private void Reset()
     {
@@ -473,6 +537,14 @@ public class PlayActivity extends AppCompatActivity {
                 r[i][j]=0;
             }
         }*/
+        ButtonEnabler();
+        ButtonBackground();
+        t1.setText("");
+        if(no_of_plays <=1)
+        {
+
+
+        }
 
         r11=0;r12=0;r13=0;r21=0;r22=0;r23=0;r31=0;r32=0;r33=0;
         counter=0;
@@ -488,6 +560,34 @@ public class PlayActivity extends AppCompatActivity {
         b7.setEnabled(false);
         b8.setEnabled(false);
         b9.setEnabled(false);
+    }
+
+    private void ButtonEnabler()
+    {
+
+        b1.setEnabled(true);
+        b2.setEnabled(true);
+        b3.setEnabled(true);
+        b4.setEnabled(true);
+        b5.setEnabled(true);
+        b6.setEnabled(true);
+        b7.setEnabled(true);
+        b8.setEnabled(true);
+        b9.setEnabled(true);
+    }
+
+    private void ButtonBackground()
+    {
+
+        b1.setBackgroundResource(android.R.drawable.btn_default);
+        b2.setBackgroundResource(android.R.drawable.btn_default);
+        b3.setBackgroundResource(android.R.drawable.btn_default);
+        b4.setBackgroundResource(android.R.drawable.btn_default);
+        b5.setBackgroundResource(android.R.drawable.btn_default);
+        b6.setBackgroundResource(android.R.drawable.btn_default);
+        b7.setBackgroundResource(android.R.drawable.btn_default);
+        b8.setBackgroundResource(android.R.drawable.btn_default);
+        b9.setBackgroundResource(android.R.drawable.btn_default);
     }
 
     private void playerWin1(){

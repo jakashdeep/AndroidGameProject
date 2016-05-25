@@ -20,11 +20,16 @@ public class NameActivity extends AppCompatActivity {
     Button b2;
     Button b3;
     Button b4;
+    Button b5;
+    Button b6;
     Spinner dropdown;
     SharedPreferences sharedpre;
     String player1;
     String player2;
     SharedPreferences.Editor editor;
+    public static int plays=1;
+
+    Intent i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +40,7 @@ public class NameActivity extends AppCompatActivity {
         et1 = (EditText) findViewById(R.id.editText);
         et2 = (EditText) findViewById(R.id.editText2);
         dropdown = (Spinner)findViewById(R.id.spinner);
-        String[] items = new String[]{"X", "Y"};
+        String[] items = new String[]{"X", "O"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
@@ -46,6 +51,8 @@ public class NameActivity extends AppCompatActivity {
         b2 = (Button) findViewById(R.id.button11);
         b3 = (Button) findViewById(R.id.button12);
         b4 = (Button) findViewById(R.id.button13);
+        b5 = (Button) findViewById(R.id.button14);
+        b6 = (Button) findViewById(R.id.button15);
        // System.out.print("Valueeeeeeee" + );
 
      /*sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
@@ -59,6 +66,7 @@ public class NameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //starts playactivity
+               plays=1;
                 player1=et1.getText().toString();
                 Log.d("Player1", "value"+player1);
                 player2=et2.getText().toString();
@@ -67,6 +75,9 @@ public class NameActivity extends AppCompatActivity {
                 i.putExtra("user1",et1.getText().toString());
                 i.putExtra("user2",et2.getText().toString());
                 i.putExtra("selection",DropDownCheck());
+
+                i.putExtra("plays",plays);
+               //sendData();
                 startActivity(i);
             }
         });
@@ -100,6 +111,62 @@ public class NameActivity extends AppCompatActivity {
                 startActivity(s);
             }
         });
+
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                plays=3;
+                player1=et1.getText().toString();
+                Log.d("Player1", "value"+player1);
+                player2=et2.getText().toString();
+                Log.d("Player2", "value" + player2);
+                //SearchName();
+                i.putExtra("user1",et1.getText().toString());
+                i.putExtra("user2",et2.getText().toString());
+                i.putExtra("selection",DropDownCheck());
+                //sendData();
+                i.putExtra("plays",plays);
+                startActivity(i);
+
+
+            }
+        });
+
+        b6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               // i.putExtra("plays","5");
+                player1=et1.getText().toString();
+                Log.d("Player1", "value"+player1);
+                player2=et2.getText().toString();
+                Log.d("Player2", "value" + player2);
+                //SearchName();
+                i.putExtra("user1",et1.getText().toString());
+                i.putExtra("user2",et2.getText().toString());
+                i.putExtra("selection",DropDownCheck());
+                //sendData();
+                plays=5;
+                i.putExtra("plays",plays);
+                startActivity(i);
+
+
+            }
+        });
+
+    }
+
+    private void sendData()
+    {
+        player1=et1.getText().toString();
+        Log.d("Player1", "value"+player1);
+        player2=et2.getText().toString();
+        Log.d("Player2", "value" + player2);
+        //SearchName();
+        i.putExtra("user1",et1.getText().toString());
+        i.putExtra("user2",et2.getText().toString());
+        i.putExtra("selection",DropDownCheck());
     }
 
     public void AppExit()
