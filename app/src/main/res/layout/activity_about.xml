@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="THis is the tic tac toe game"
+        android:text="Tic-tac-toe (also known as Noughts and crosses or Xs and Os) is a two payer game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game."
         android:id="@+id/textView8"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"

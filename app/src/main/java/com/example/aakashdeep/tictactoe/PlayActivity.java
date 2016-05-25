@@ -17,6 +17,11 @@ import android.widget.Toast;
 
 import static android.graphics.Color.*;
 
+/**The class implements gameplay of the tic-tac-toe game between 2 players
+ * @author team 9
+ * @version Deliverable 2
+ * @since
+ */
 public class PlayActivity extends AppCompatActivity {
     Button b1;
     Button b2;
@@ -133,6 +138,10 @@ Log.d("In Play Activity","XXXXXXX");
 
     }
 
+    /**
+     *
+     * @param v
+     */
     public void buttonClick(View v) {
         switch (v.getId()) {
             case R.id.button:
@@ -398,7 +407,10 @@ Log.d("In Play Activity","XXXXXXX");
         }
     }
 
-
+    /**
+     * Check the win condition as well as graphically represent the winners row or column by coloring it
+     * @return Returns the boolean variable which states that the winning condition has already occurred
+     */
     private boolean winConditionChecker(){
 
         //Condition for player one win
@@ -519,7 +531,9 @@ Log.d("In Play Activity","XXXXXXX");
 
     }
 
-
+    /**
+     * Reset the board and resets all the variables associate with the game play
+     */
     private void Reset()
     {
         b1.setText("");
@@ -550,6 +564,9 @@ Log.d("In Play Activity","XXXXXXX");
         counter=0;
     }
 
+    /**
+     * Function to disable all the buttons
+     */
     private void ButtonDisabler(){
         b1.setEnabled(false);
         b2.setEnabled(false);
@@ -562,6 +579,9 @@ Log.d("In Play Activity","XXXXXXX");
         b9.setEnabled(false);
     }
 
+    /**
+     * Function to enable all the buttons
+     */
     private void ButtonEnabler()
     {
 
@@ -576,6 +596,9 @@ Log.d("In Play Activity","XXXXXXX");
         b9.setEnabled(true);
     }
 
+    /**
+     * Change the button background
+     */
     private void ButtonBackground()
     {
 
@@ -640,23 +663,7 @@ Log.d("In Play Activity","XXXXXXX");
             Log.d("done Search Data", "Player2");
             Log.d("scorePlayer2", " --"+scorePlayer2);
 
-       // }
-       /* Log.d("hhhhhhh", "1");
-        String name=sharedpre.getString("Name",null);
-        Log.d("hhhhhhh", "2");
-        //String score=sharedpre.getInt("Score",null);
-        Log.d("hhhhhhh", "3");
 
-        if(name!=null)
-        {
-            Toast.makeText(this,"No Data Was found",Toast.LENGTH_LONG).show();
-            scoreUpdate();
-        }
-        else
-        {
-            Toast.makeText(this,"Data Was found",Toast.LENGTH_LONG).show();
-
-        }*/
     }
 
     private void scoreUpdate()
