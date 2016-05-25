@@ -9,8 +9,18 @@ import android.widget.TextView;
 
 import java.util.Map;
 
+
+/**
+ * @author Aakashdeep
+ * @version deliverable 2
+ * @since 15-5-2016
+ */
 public class Score extends AppCompatActivity {
 
+    /**
+     * Primary method that creates the activity as well as print the contain of database on the textview
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

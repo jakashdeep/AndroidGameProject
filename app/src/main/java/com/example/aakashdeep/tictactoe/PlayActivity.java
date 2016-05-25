@@ -71,14 +71,13 @@ boolean flag2 = true;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-Log.d("In Play Activity","XXXXXXX");
+
        /* if(flag2){
         no_of_plays = NameActivity.plays ;
         flag2 =false;
        }*/
 
-    //Alert Dialog Box
-       // AlertDialog.Builder Popup  = new AlertDialog.Builder(this);
+
         //button onclick code
         b1 = (Button) findViewById(R.id.button);
         b2 = (Button) findViewById(R.id.button2);
@@ -627,8 +626,9 @@ Log.d("In Play Activity","XXXXXXX");
     }
 
 
-
-
+    /**
+     * Search the players name in the database
+     */
     private void searchData()
     {
         //sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
@@ -666,6 +666,9 @@ Log.d("In Play Activity","XXXXXXX");
 
     }
 
+    /**
+     * Updates the data from the database on the scoreboards
+     */
     private void scoreUpdate()
     {
         Log.d("In winner if", "--");

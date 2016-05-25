@@ -13,6 +13,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
+/**The class takes Players name, symbol selection as well as the button click from user and submit
+ * the data to the PlayActivity
+ * @author Aakashdeep
+ * @version deliverable 2
+ * @since 15-05-2016
+ */
 public class NameActivity extends AppCompatActivity {
     EditText et1;
     EditText et2;

@@ -7,6 +7,11 @@ import android.os.Bundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**Class to display the welcome screen to the users
+ * @author team9
+ * @version deliverable 2
+ * @since 15-05-2016
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
