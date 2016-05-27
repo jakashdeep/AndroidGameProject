@@ -392,7 +392,7 @@ public class PlayActivity extends AppCompatActivity {
         {
             Log.d("In if condition","flagccccccccccccc"+flag);
             Log.d("no_of_plays","flagvvvvvvvvvv"+no_of_plays);
-            if(no_of_plays>=1){
+            if(no_of_plays>=1 || singlegame==true){
                 Log.d("no_of_plays", "flagccccccccccccc" + no_of_plays);
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("Alert");
@@ -432,7 +432,7 @@ public class PlayActivity extends AppCompatActivity {
             Log.d("no_of_plays", "flagvvvvvvvvvv" + no_of_plays);
 
 
-            if(no_of_plays>=1){
+            if(no_of_plays>=1 || singlegame==true){
                 Log.d("no_of_plays","flagvvvvvvvvvv"+no_of_plays);
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("Alert");
