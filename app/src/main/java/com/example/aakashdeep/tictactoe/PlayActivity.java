@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.Preference;
@@ -32,6 +33,9 @@ public class PlayActivity extends AppCompatActivity {
     Button b7;
     Button b8;
     Button b9;
+    Button b10;
+    Button b11;
+
     TextView t1;
     //Player Name Text field
     TextView t2;
@@ -88,8 +92,10 @@ boolean flag2 = true;
         b7 = (Button) findViewById(R.id.button7);
         b8 = (Button) findViewById(R.id.button8);
         b9 = (Button) findViewById(R.id.button9);
-
-
+        //Reset Button
+        b10 = (Button) findViewById(R.id.button16);
+        //Exit Button
+        b11 = (Button) findViewById(R.id.button17);
 
         t1=(TextView)findViewById(R.id.textView3);
         t2=(TextView)findViewById(R.id.textView4);
@@ -362,6 +368,12 @@ boolean flag2 = true;
                 }
 
                 break;
+            case R.id.button16:
+                Reset();
+                break;
+            case R.id.button17:
+                exit();
+                break;
         }
 
         if(flag)
@@ -369,7 +381,7 @@ boolean flag2 = true;
             if(no_of_plays>=2){
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("Alert");
-                alert.setMessage("Player Won"+winner+"\n"+"New Game Starts");
+                alert.setMessage("Player "+winner+" Wins"+"\n"+"New Game Starts");
                 alert.setPositiveButton("OK",null);
                 alert.show();
                 no_of_plays--;
@@ -392,7 +404,7 @@ boolean flag2 = true;
             if(no_of_plays>=2){
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("Alert");
-                alert.setMessage("Game is Draw" + "\n" + "New Game Starts");
+                alert.setMessage("Game is Draw " + "\n" + "New Game Starts");
                 alert.setPositiveButton("OK", null);
                 alert.show();
 
@@ -613,7 +625,7 @@ boolean flag2 = true;
     }
 
     private void playerWin1(){
-        t1.setText("Winner is "+user1);
+        t1.setText("Winner is " + user1);
         winner=Player1;
         Log.d("In winner declared", "--");
         scoreUpdate();
@@ -631,28 +643,19 @@ boolean flag2 = true;
      */
     private void searchData()
     {
-        //sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
 
-        Log.d("In Search Data", "--");
-        //Condition to check if the database already have the score of the Player 1
-       //if (sharedpre.contains(Player1)==false){
-
-      // }
-        //if (sharedpre.contains(Player2)){
-
-        //}
-            Log.d("In Search Data", "Player1");
-            Toast.makeText(this, "Akash Was found", Toast.LENGTH_LONG).show();
-            Log.d("In Search Data", " before getint");
+            //Log.d("In Search Data", "Player1");
+           // Toast.makeText(this, "Akash Was found", Toast.LENGTH_LONG).show();
+           // Log.d("In Search Data", " before getint");
             scorePlayer1=sharedpre.getInt(Player1,0);
-            Log.d("After Search Data", " before getint");
-            Log.d("scorePlayer1", " --" + scorePlayer1);
+            //Log.d("After Search Data", " before getint");
+           // Log.d("scorePlayer1", " --" + scorePlayer1);
 
        // }
         //Condition to check if the database already have the score of the Player 2
        // if (sharedpre.contains(Player2)){
-            Log.d("In Search Data", "Player2");
-            Toast.makeText(this, "comp Was found", Toast.LENGTH_LONG).show();
+            //Log.d("In Search Data", "Player2");
+            //Toast.makeText(this, "comp Was found", Toast.LENGTH_LONG).show();
             scorePlayer2=sharedpre.getInt(Player2,0);
 
 
@@ -660,8 +663,8 @@ boolean flag2 = true;
             //Updating the text field with the Score
             t4.setText(String.valueOf(scorePlayer1));
             t5.setText(String.valueOf(scorePlayer2));
-            Log.d("done Search Data", "Player2");
-            Log.d("scorePlayer2", " --"+scorePlayer2);
+            //Log.d("done Search Data", "Player2");
+            //Log.d("scorePlayer2", " --"+scorePlayer2);
 
 
     }
@@ -690,4 +693,19 @@ boolean flag2 = true;
         t4.setText(String.valueOf(scorePlayer1));
         t5.setText(String.valueOf(scorePlayer2));
     }
+
+    /**
+     * Function to exit the game
+     */
+    private void exit()
+    {
+        Log.d("In exit function","------");
+        this.finish();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 }
+
+

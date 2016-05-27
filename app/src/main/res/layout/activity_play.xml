@@ -166,6 +166,35 @@
                 android:layout_column="2" />
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset"
+                android:onClick="buttonClick"
+                android:id="@+id/button16"
+                android:layout_column="0" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exit"
+                android:onClick="buttonClick"
+                android:id="@+id/button17"
+                android:layout_column="2" />
+        </TableRow>
+
     </TableLayout>
 
 </RelativeLayout>

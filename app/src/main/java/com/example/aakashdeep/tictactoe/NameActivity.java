@@ -60,14 +60,14 @@ public class NameActivity extends AppCompatActivity {
         b4 = (Button) findViewById(R.id.button13);
         b5 = (Button) findViewById(R.id.button14);
         b6 = (Button) findViewById(R.id.button15);
-       // System.out.print("Valueeeeeeee" + );
+
 
      /*sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor= sharedpre.edit();
        editor.clear();
        editor.commit();*/
 
-       // Listener for button
+       // Listener for buttons
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,13 +78,12 @@ public class NameActivity extends AppCompatActivity {
                 Log.d("Player1", "value"+player1);
                 player2=et2.getText().toString();
                 Log.d("Player2", "value" + player2);
-                //SearchName();
+
                 i.putExtra("user1",et1.getText().toString());
                 i.putExtra("user2",et2.getText().toString());
                 i.putExtra("selection",DropDownCheck());
-
                 i.putExtra("plays",plays);
-               //sendData();
+
                 startActivity(i);
             }
         });
@@ -128,11 +127,9 @@ public class NameActivity extends AppCompatActivity {
                 Log.d("Player1", "value"+player1);
                 player2=et2.getText().toString();
                 Log.d("Player2", "value" + player2);
-                //SearchName();
                 i.putExtra("user1",et1.getText().toString());
                 i.putExtra("user2",et2.getText().toString());
                 i.putExtra("selection",DropDownCheck());
-                //sendData();
                 i.putExtra("plays",plays);
                 startActivity(i);
 
@@ -144,16 +141,14 @@ public class NameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               // i.putExtra("plays","5");
+
                 player1=et1.getText().toString();
                 Log.d("Player1", "value"+player1);
                 player2=et2.getText().toString();
                 Log.d("Player2", "value" + player2);
-                //SearchName();
                 i.putExtra("user1",et1.getText().toString());
                 i.putExtra("user2",et2.getText().toString());
                 i.putExtra("selection",DropDownCheck());
-                //sendData();
                 plays=5;
                 i.putExtra("plays",plays);
                 startActivity(i);
@@ -162,18 +157,6 @@ public class NameActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void sendData()
-    {
-        player1=et1.getText().toString();
-        Log.d("Player1", "value"+player1);
-        player2=et2.getText().toString();
-        Log.d("Player2", "value" + player2);
-        //SearchName();
-        i.putExtra("user1",et1.getText().toString());
-        i.putExtra("user2",et2.getText().toString());
-        i.putExtra("selection",DropDownCheck());
     }
 
     public void AppExit()
@@ -192,46 +175,7 @@ public class NameActivity extends AppCompatActivity {
         return String.valueOf(dropdown.getSelectedItem());
     }
 
-    private void SearchName()
-    {
-        Log.d("In Search Name", "--");
-        sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
 
-        //String temp=sharedpre.getString("Name",null);
-        Log.d(" sharedpre", "2");
-        //String score=sharedpre.getInt("Score",null);
-if (sharedpre.contains("akash")){
-    Toast.makeText(this, "Akash Was found", Toast.LENGTH_LONG).show();
-}
-        if (sharedpre.contains("comp")){
-            Toast.makeText(this, "comp Was found", Toast.LENGTH_LONG).show();
-        }
-
-
-/*
-        if(sharedpre.contains("Name"))
-        {
-            Log.d("in  ", "if");
-            Log.d("player1", "2"+player1);
-            String name=sharedpre.getString("Name",player1);
-            Log.d("name", "2"+name);
-            Toast.makeText(this, "Data Was found", Toast.LENGTH_LONG).show();
-            //scoreUpdate();
-        }
-        else
-        {
-            editor= sharedpre.edit();
-            Log.d("in  ", "else");
-            Toast.makeText(this,"No Data Was found",Toast.LENGTH_LONG).show();
-            //editor.putString(player1, player1);
-            editor.putInt(player1, 0);
-            //editor.putString("Name1", player2);
-            editor.putInt(player2,0);
-            //FirstEntry(player1);
-           // FirstEntry(player2);
-            editor.commit();
-        }*/
-    }
 
     private void FirstEntry(String temp1)
     {
