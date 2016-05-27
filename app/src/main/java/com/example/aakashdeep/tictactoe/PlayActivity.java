@@ -56,8 +56,17 @@ public class PlayActivity extends AppCompatActivity {
 
     int scorePlayer1;
     int scorePlayer2;
-boolean flag2 = true;
+    boolean flag2 = true;
     String winner = null;
+
+    //Reset button status
+    boolean reset=false;
+    //For Single play condition
+    boolean  singlegame=false;
+
+    //Calculate number of players wins
+    int p1wins=0;
+    int p2wins=0;
 
     //Symbols to store the symbols X and O
     String symbol1;
@@ -116,6 +125,8 @@ boolean flag2 = true;
         select=bundle.getString("selection");
         Log.d("before ", "no_of_plays");
         no_of_plays=bundle.getInt("plays");
+        if(no_of_plays==1)
+            singlegame=true;
         Log.d("no_of_plays", "no_of_plays" + no_of_plays);
        // no_of_plays=1;
         user1=user1+" "+select;
@@ -369,6 +380,7 @@ boolean flag2 = true;
 
                 break;
             case R.id.button16:
+                reset=true;
                 Reset();
                 break;
             case R.id.button17:
@@ -378,11 +390,30 @@ boolean flag2 = true;
 
         if(flag)
         {
-            if(no_of_plays>=2){
+            Log.d("In if condition","flagccccccccccccc"+flag);
+            Log.d("no_of_plays","flagvvvvvvvvvv"+no_of_plays);
+            if(no_of_plays>=1){
+                Log.d("no_of_plays", "flagccccccccccccc" + no_of_plays);
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("Alert");
-                alert.setMessage("Player "+winner+" Wins"+"\n"+"New Game Starts");
-                alert.setPositiveButton("OK",null);
+                String alert1="Player " + winner + " Wins";
+                //alert.setMessage("Player " + winner + " Wins");
+                if(no_of_plays>1 && singlegame==false){
+                    alert1=alert1.concat(" New Game Starts");}
+                   //alert.setMessage("New Game Starts");
+                if(no_of_plays==1 && singlegame==false) {
+                    Log.d("If statement flag","If statement flag");
+                    Log.d("P1 and p2",String.valueOf(p1wins)+String.valueOf(p2wins));
+                    if (p1wins > p2wins)
+                        alert1=alert1.concat("\n" + "Winner of Game series " + Player1);// alert.setMessage("\n" + "Winner of Game series " + Player1);
+                    else
+                        alert1=alert1.concat("\n" + "Winner of Game series " + Player2);//alert.setMessage("\n" + "Winner of Game series " + Player2);
+
+                }
+                Log.d("Singlegame variable",String.valueOf(singlegame));
+                Log.d("alert1",alert1);
+                alert.setMessage(alert1);
+                alert.setPositiveButton("OK", null);
                 alert.show();
                 no_of_plays--;
                 Reset();
@@ -394,17 +425,34 @@ boolean flag2 = true;
         if(counter>=9)
         {
 
-
+            Log.d("In draw", "flagvvvvvvvvvv");
             t1.setText("Game is drawn");
             t1.setBackgroundColor(0x66ccff00);
-            Log.d("Game is drawn", "---");
+            //Log.d("Game is drawn", "---");
+            Log.d("no_of_plays", "flagvvvvvvvvvv" + no_of_plays);
 
 
-
-            if(no_of_plays>=2){
+            if(no_of_plays>=1){
+                Log.d("no_of_plays","flagvvvvvvvvvv"+no_of_plays);
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("Alert");
-                alert.setMessage("Game is Draw " + "\n" + "New Game Starts");
+                String alert1="Game is Draw ";
+                //alert.setMessage("Game is Draw ");
+                if(singlegame==false) {
+                    alert1=alert1.concat(" New Game Starts");
+                }// alert.setMessage("New Game Starts");
+                if(no_of_plays==1 && singlegame==false) {
+                    Log.d("If statement flag","If statement flag");
+                    Log.d("P1 and p2",String.valueOf(p1wins)+String.valueOf(p2wins));
+                    if (p1wins > p2wins)
+                        alert1=alert1.concat("\n" + "Winner of Game series " + Player1);//alert.setMessage("\n" + "Winner of Game series " + Player1);
+                    else
+                        alert1=alert1.concat("\n" + "Winner of Game series " + Player2);// alert.setMessage("\n" + "Winner of Game series " + Player2);
+
+                    }
+                Log.d("Singlegame variable", String.valueOf(singlegame));
+                Log.d("alert1",alert1);
+                alert.setMessage(alert1);
                 alert.setPositiveButton("OK", null);
                 alert.show();
 
@@ -565,14 +613,17 @@ boolean flag2 = true;
         ButtonEnabler();
         ButtonBackground();
         t1.setText("");
-        if(no_of_plays <=1)
+        if(no_of_plays <=0 && reset==false )
         {
-
+            ButtonDisabler();
 
         }
-
+        p1wins=0;
+        p2wins=0;
         r11=0;r12=0;r13=0;r21=0;r22=0;r23=0;r31=0;r32=0;r33=0;
         counter=0;
+        flag=false;
+        reset=false;
     }
 
     /**
@@ -627,13 +678,15 @@ boolean flag2 = true;
     private void playerWin1(){
         t1.setText("Winner is " + user1);
         winner=Player1;
-        Log.d("In winner declared", "--");
+        p1wins++;
+        //Log.d("In winner declared", "--");
         scoreUpdate();
     }
     private void playerWin2(){
         t1.setText("Winner is "+user2);
         winner=Player2;
-        Log.d("In winner declared", "--");
+        p2wins++;
+        //Log.d("In winner declared", "--");
         scoreUpdate();
     }
 
@@ -680,13 +733,13 @@ boolean flag2 = true;
         if(winner==Player1){
             scorePlayer1++;
             editor.putInt(winner, scorePlayer1);
-            Log.d("In winner if Player1", "--");
+            //Log.d("In winner if Player1", "--");
         }
         else
         {
             scorePlayer2++;
             editor.putInt(winner, scorePlayer2);
-            Log.d("In winner if Player2", "--");
+            //Log.d("In winner if Player2", "--");
         }
         editor.commit();
 
@@ -699,7 +752,7 @@ boolean flag2 = true;
      */
     private void exit()
     {
-        Log.d("In exit function","------");
+        //Log.d("In exit function","------");
         this.finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
