@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 /**Class that display about the tictactoe game
- * @author Aakashdeep
+ * @author Team9
  * @version deliverable 2
  * @since 15-05-2016
  */

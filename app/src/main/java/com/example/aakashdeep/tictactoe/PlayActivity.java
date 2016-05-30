@@ -74,7 +74,6 @@ public class PlayActivity extends AppCompatActivity {
 
     public static final String DEFAULT = "N/A";
 
-    //Button b[][];
 
     int r11=0,r12=0,r13=0,r21=0,r22=0,r23=0,r31=0,r32=0,r33=0;//X=1 and O=2
 
@@ -84,12 +83,6 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-
-       /* if(flag2){
-        no_of_plays = NameActivity.plays ;
-        flag2 =false;
-       }*/
-
 
         //button onclick code
         b1 = (Button) findViewById(R.id.button);
@@ -147,16 +140,13 @@ public class PlayActivity extends AppCompatActivity {
         t3.setText(user2);
         Log.d("Before Search Data", "call");
         searchData();
-        //System.out.print("user1");
-       // b1.setText(message);
-       // b2.setText(message1);
-        //System.out.print(message);
+
 
     }
 
     /**
-     *
-     * @param v
+     *Handles the button click for the board
+     * @param v Get View for the button click
      */
     public void buttonClick(View v) {
         switch (v.getId()) {
@@ -390,28 +380,24 @@ public class PlayActivity extends AppCompatActivity {
 
         if(flag)
         {
-            Log.d("In if condition","flagccccccccccccc"+flag);
-            Log.d("no_of_plays","flagvvvvvvvvvv"+no_of_plays);
+
             if(no_of_plays>=1 || singlegame==true){
-                Log.d("no_of_plays", "flagccccccccccccc" + no_of_plays);
+
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("Alert");
                 String alert1="Player " + winner + " Wins";
-                //alert.setMessage("Player " + winner + " Wins");
+
                 if(no_of_plays>1 && singlegame==false){
                     alert1=alert1.concat(" New Game Starts");}
-                   //alert.setMessage("New Game Starts");
+
                 if(no_of_plays==1 && singlegame==false) {
-                    Log.d("If statement flag","If statement flag");
-                    Log.d("P1 and p2",String.valueOf(p1wins)+String.valueOf(p2wins));
+
                     if (p1wins > p2wins)
-                        alert1=alert1.concat("\n" + "Winner of Game series " + Player1);// alert.setMessage("\n" + "Winner of Game series " + Player1);
+                        alert1=alert1.concat("\n" + "Winner of Game series " + Player1);
                     else
-                        alert1=alert1.concat("\n" + "Winner of Game series " + Player2);//alert.setMessage("\n" + "Winner of Game series " + Player2);
+                        alert1=alert1.concat("\n" + "Winner of Game series " + Player2);
 
                 }
-                Log.d("Singlegame variable",String.valueOf(singlegame));
-                Log.d("alert1",alert1);
                 alert.setMessage(alert1);
                 alert.setPositiveButton("OK", null);
                 alert.show();
@@ -425,33 +411,26 @@ public class PlayActivity extends AppCompatActivity {
         if(counter>=9)
         {
 
-            Log.d("In draw", "flagvvvvvvvvvv");
+
             t1.setText("Game is drawn");
             t1.setBackgroundColor(0x66ccff00);
-            //Log.d("Game is drawn", "---");
-            Log.d("no_of_plays", "flagvvvvvvvvvv" + no_of_plays);
-
 
             if(no_of_plays>=1 || singlegame==true){
-                Log.d("no_of_plays","flagvvvvvvvvvv"+no_of_plays);
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("Alert");
                 String alert1="Game is Draw ";
-                //alert.setMessage("Game is Draw ");
                 if(singlegame==false) {
                     alert1=alert1.concat(" New Game Starts");
-                }// alert.setMessage("New Game Starts");
+                }
                 if(no_of_plays==1 && singlegame==false) {
-                    Log.d("If statement flag","If statement flag");
-                    Log.d("P1 and p2",String.valueOf(p1wins)+String.valueOf(p2wins));
+
                     if (p1wins > p2wins)
                         alert1=alert1.concat("\n" + "Winner of Game series " + Player1);//alert.setMessage("\n" + "Winner of Game series " + Player1);
                     else
                         alert1=alert1.concat("\n" + "Winner of Game series " + Player2);// alert.setMessage("\n" + "Winner of Game series " + Player2);
 
                     }
-                Log.d("Singlegame variable", String.valueOf(singlegame));
-                Log.d("alert1",alert1);
+
                 alert.setMessage(alert1);
                 alert.setPositiveButton("OK", null);
                 alert.show();
@@ -605,11 +584,7 @@ public class PlayActivity extends AppCompatActivity {
         b8.setText("");
         b9.setText("");
 
-       /* for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                r[i][j]=0;
-            }
-        }*/
+
         ButtonEnabler();
         ButtonBackground();
         t1.setText("");
@@ -675,18 +650,19 @@ public class PlayActivity extends AppCompatActivity {
         b9.setBackgroundResource(android.R.drawable.btn_default);
     }
 
+    /**
+     * Function to display the winner name
+     */
     private void playerWin1(){
         t1.setText("Winner is " + user1);
         winner=Player1;
         p1wins++;
-        //Log.d("In winner declared", "--");
         scoreUpdate();
     }
     private void playerWin2(){
         t1.setText("Winner is "+user2);
         winner=Player2;
         p2wins++;
-        //Log.d("In winner declared", "--");
         scoreUpdate();
     }
 
@@ -697,18 +673,8 @@ public class PlayActivity extends AppCompatActivity {
     private void searchData()
     {
 
-            //Log.d("In Search Data", "Player1");
-           // Toast.makeText(this, "Akash Was found", Toast.LENGTH_LONG).show();
-           // Log.d("In Search Data", " before getint");
             scorePlayer1=sharedpre.getInt(Player1,0);
-            //Log.d("After Search Data", " before getint");
-           // Log.d("scorePlayer1", " --" + scorePlayer1);
 
-       // }
-        //Condition to check if the database already have the score of the Player 2
-       // if (sharedpre.contains(Player2)){
-            //Log.d("In Search Data", "Player2");
-            //Toast.makeText(this, "comp Was found", Toast.LENGTH_LONG).show();
             scorePlayer2=sharedpre.getInt(Player2,0);
 
 
@@ -716,9 +682,6 @@ public class PlayActivity extends AppCompatActivity {
             //Updating the text field with the Score
             t4.setText(String.valueOf(scorePlayer1));
             t5.setText(String.valueOf(scorePlayer2));
-            //Log.d("done Search Data", "Player2");
-            //Log.d("scorePlayer2", " --"+scorePlayer2);
-
 
     }
 
@@ -733,13 +696,13 @@ public class PlayActivity extends AppCompatActivity {
         if(winner==Player1){
             scorePlayer1++;
             editor.putInt(winner, scorePlayer1);
-            //Log.d("In winner if Player1", "--");
+
         }
         else
         {
             scorePlayer2++;
             editor.putInt(winner, scorePlayer2);
-            //Log.d("In winner if Player2", "--");
+
         }
         editor.commit();
 
@@ -752,7 +715,7 @@ public class PlayActivity extends AppCompatActivity {
      */
     private void exit()
     {
-        //Log.d("In exit function","------");
+
         this.finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);

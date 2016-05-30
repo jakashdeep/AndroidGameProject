@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 /**
- * @author Aakashdeep
+ * @author Team 9
  * @version deliverable 2
  * @since 15-5-2016
  */
@@ -24,7 +24,7 @@ public class Score extends AppCompatActivity {
     TextView t1;
     /**
      * Primary method that creates the activity as well as print the contain of database on the textview
-     * @param savedInstanceState
+     * @param savedInstanceState To save the state of the application
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,10 @@ public class Score extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * To clear the database
+     */
     private void Clear()
     {
         SharedPreferences.Editor editor= sharedpre.edit();
@@ -59,6 +63,9 @@ public class Score extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * To display the scores from the database
+     */
     private void show()
     {
         Map<String, ?> allEntries = sharedpre.getAll();
