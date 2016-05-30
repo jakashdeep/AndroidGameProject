@@ -37,6 +37,11 @@ public class NameActivity extends AppCompatActivity {
     public static int plays=1;
 
     Intent i;
+
+    /**
+     * It has the onclick listeners for the buttons and paramater passing to the playactivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +67,7 @@ public class NameActivity extends AppCompatActivity {
         b6 = (Button) findViewById(R.id.button15);
 
 
-     /*sharedpre=getSharedPreferences("Try1", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedpre.edit();
-       editor.clear();
-       editor.commit();*/
+
 
        // Listener for buttons
 
@@ -75,9 +77,9 @@ public class NameActivity extends AppCompatActivity {
                 //starts playactivity
                plays=1;
                 player1=et1.getText().toString();
-                Log.d("Player1", "value"+player1);
+
                 player2=et2.getText().toString();
-                Log.d("Player2", "value" + player2);
+
 
                 i.putExtra("user1",et1.getText().toString());
                 i.putExtra("user2",et2.getText().toString());
@@ -159,6 +161,9 @@ public class NameActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Function to exit the application
+     */
     public void AppExit()
     {
 
@@ -171,13 +176,17 @@ public class NameActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Check the dropdown selection
+     * @return the selected dropdown item
+     */
     private String DropDownCheck(){
         return String.valueOf(dropdown.getSelectedItem());
     }
 
 
 
-    private void FirstEntry(String temp1)
+    /*private void FirstEntry(String temp1)
     {
         Log.d("in  ", "firstentry");
 
@@ -187,7 +196,7 @@ public class NameActivity extends AppCompatActivity {
         editor.putInt("Score",0);
 
 
-    }
+    }*/
 
 }
 
